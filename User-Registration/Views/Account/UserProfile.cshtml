@@ -1,0 +1,96 @@
+﻿@model User_Registration.Models.UserProfile
+
+@{
+    ViewData["Title"] = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>UserProfile</h1>
+
+<div>
+    <h4>UserProfile</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="@Model.Image" class="img-fluid" alt="User Image" />
+            }
+            else
+            {
+                <span>No Image</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="UpdateUser" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@* Edit Form for User Profile *@
+<div>
+    <h4>Edit User Profile</h4>
+    <form asp-action="UpdateUserInfo" asp-route-id="@Model?.Id" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender"></label>
+            <input asp-for="Gender" class="form-control" />
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateOfBirth"></label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MaritalStatus"></label>
+            <input asp-for="MaritalStatus" class="form-control" />
+            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input asp-for="Image" type="file" class="form-control-file" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
