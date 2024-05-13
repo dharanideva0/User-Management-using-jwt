@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -186,6 +187,7 @@ namespace User_Registration.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> UpdateUser([FromForm] UpdateUserDto model)
         {
             if (ModelState.IsValid)
@@ -254,7 +256,8 @@ namespace User_Registration.Controllers
             }
         }
 
-        // GET: AccountController/Delete/5
+
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View();
